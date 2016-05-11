@@ -27,6 +27,13 @@ fontP.set_size('small')
 path = './'
 files = []
 all_files = glob.glob(path + "*.csv")
+
+# Fjerner _resultater.csv, hvis den er der
+try:
+	all_files.remove('./_resultater.csv')
+except:
+	pass
+
 for file in all_files:
 	vars = file.split("+")
 	files.append([file,vars[1].replace(".csv","")])

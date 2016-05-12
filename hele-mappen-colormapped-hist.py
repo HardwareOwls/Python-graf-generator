@@ -37,7 +37,7 @@ except:
 for file in all_files:
 	vars = file.split("+")
 	df = pd.read_csv(file, names=['data'], header=None)['data']
-	ax = df.hist()
+	ax = df.hist(bins=100)
 	fig = ax.get_figure()
 	fig.savefig(file.replace(".csv",'-hist.png'))
 	fig.clf()

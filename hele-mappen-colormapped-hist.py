@@ -37,7 +37,6 @@ except:
 for file in all_files:
 	vars = file.split("+")
 	df = pd.read_csv(file, names=['data'], header=None)['data']
-	#df = pd.read_csv(file, names=['data'], header=None, quoting=2)['data']
 	ax = df.hist()
 	fig = ax.get_figure()
 	fig.savefig(file.replace(".csv",'-hist.png'))
@@ -46,15 +45,14 @@ for file in all_files:
 # Loeber alle filer igennem og laver diagrammer af dem
 for file in all_files:
 	vars = file.split("+")
-	print vars[1].replace(".csv","")
-	files.append([file,vars[1].replace(".csv","")])
-	df = pd.read_csv(file, names=[vars[1].replace(".csv","")], header=None)
+	vars = vars[1].split(" -")
+	print vars[0].replace(".csv","")
+	files.append([file,vars[0].replace(".csv","")])
+	df = pd.read_csv(file, names=[vars[0].replace(".csv","")], header=None)
 	ax = df.plot()
 	fig = ax.get_figure()
 	fig.savefig(file.replace(".csv",'.png'))
-	#del df
-	#del ax
-	#del fig
+	fig.clf()
 
 # Laver en liste med alle de fundne kurver
 ax = None
